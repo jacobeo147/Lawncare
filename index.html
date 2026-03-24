@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eden Lawn Care</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --green-dark:#061b10;
+      --green:#0d311b;
+      --green-soft:#123f22;
+      --gold:#d6af45;
+      --gold-light:#f2d37a;
+      --white:#ffffff;
+      --shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:"Inter", sans-serif;
+      background:#07160d;
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:min(1240px, 92%);
+      margin:0 auto;
+    }
+
+    .site-bg{
+      background:
+        radial-gradient(circle at top, rgba(214,175,69,0.12), transparent 28%),
+        radial-gradient(circle at bottom, rgba(214,175,69,0.08), transparent 30%),
+        linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.18)),
+        linear-gradient(180deg, #082313 0%, #0b2e18 45%, #082313 100%);
+      min-height:100vh;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:
+        linear-gradient(180deg, rgba(8,26,14,0.98), rgba(8,26,14,0.95)),
+        linear-gradient(90deg, #0a2b16, #12381e);
+      border-bottom:1px solid rgba(214,175,69,0.75);
+      box-shadow:0 4px 18px rgba(0,0,0,0.25);
+    }
+
+    .nav{
+      min-height:92px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:260px;
+    }
+
+    .brand img{
+      width:74px;
+      height:74px;
+      object-fit:cover;
+      border-radius:50%;
+      border:2px solid rgba(214,175,69,0.8);
+      box-shadow:0 0 18px rgba(214,175,69,0.18);
+      background:#091c11;
+    }
+
+    .brand-text{
+      font-family:"Cinzel", serif;
+      line-height:1;
+      color:var(--gold-light);
+    }
+
+    .brand-text .top{
+      font-size:2rem;
+      font-weight:800;
+      letter-spacing:0.04em;
+    }
+
+    .brand-text .bottom{
+      display:block;
+      font-size:1.15rem;
+      font-weight:700;
+      margin-top:4px;
+      letter-spacing:0.12em;
+    }
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap:38px;
+      list-style:none;
+      font-family:"Cinzel", serif;
+      font-weight:700;
+      font-size:1rem;
+      letter-spacing:0.02em;
+    }
+
+    .menu a{
+      color:#f8f4eb;
+      transition:0.2s ease;
+    }
+
+    .menu a:hover{
+      color:var(--gold-light);
+    }
+
+    .nav-cta{
+      background:linear-gradient(180deg, #f3d47d, #cda23f);
+      color:#1e1707;
+      font-weight:800;
+      padding:16px 24px;
+      border-radius:8px;
+      font-size:1rem;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.55),
+        0 8px 16px rgba(0,0,0,0.25);
+      border:1px solid #f0d37d;
+      white-space:nowrap;
+    }
+
+    .hero{
+      position:relative;
+      padding:32px 0 36px;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(3,13,7,0.55) 0%, rgba(5,20,10,0.35) 45%, rgba(5,20,10,0.18) 100%),
+        url("hero-bg.jpg") center/cover no-repeat;
+      opacity:0.58;
+      z-index:0;
+    }
+
+    .hero-grid{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns: 1.02fr 1.2fr;
+      gap:32px;
+      align-items:center;
+      min-height:660px;
+    }
+
+    .hero-left{
+      padding:28px 14px 28px 8px;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:center;
+    }
+
+    .hero-logo{
+      width:min(520px, 100%);
+      filter:
+        drop-shadow(0 8px 18px rgba(0,0,0,0.55))
+        drop-shadow(0 0 18px rgba(214,175,69,0.12));
+    }
+
+    .hero-right{
+      padding:24px 8px 24px 12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:18px;
+    }
+
+    .service-list{
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      margin-bottom:18px;
+    }
+
+    .service-list li{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      font-family:"Cinzel", serif;
+      font-size:2rem;
+      font-weight:800;
+      line-height:1.15;
+      color:#fff;
+      text-shadow:
+        0 2px 4px rgba(0,0,0,0.55),
+        0 0 1px rgba(0,0,0,0.9);
+    }
+
+    .check-box{
+      width:52px;
+      height:52px;
+      border:4px solid var(--gold);
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-size:2.2rem;
+      font-weight:900;
+      box-shadow:0 4px 10px rgba(0,0,0,0.28);
+      flex-shrink:0;
+      background:rgba(214,175,69,0.05);
+    }
+
+    .hero-cta-wrap{
+      margin-top:8px;
+    }
+
+    .hero-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:14px;
+      background:linear-gradient(180deg, #f5d77f, #c89d38);
+      color:#1d1506;
+      padding:18px 28px;
+      font-size:1.18rem;
+      font-weight:800;
+      border-radius:8px;
+      border:2px solid #f0d37b;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.6),
+        0 10px 25px rgba(0,0,0,0.28);
+      letter-spacing:0.01em;
+    }
+
+    .hero-cta .icon{
+      font-size:1.5rem;
+      line-height:1;
+    }
+
+    .section-divider{
+      position:relative;
+      height:64px;
+      margin-top:-4px;
+      background:
+        radial-gradient(120% 100% at 50% -30%, rgba(214,175,69,0.24), transparent 55%),
+        linear-gradient(180deg, #092613, #0a2b16);
+      border-top:1px solid rgba(214,175,69,0.7);
+      border-bottom:1px solid rgba(214,175,69,0.55);
+      overflow:hidden;
+    }
+
+    .section-divider::before{
+      content:"";
+      position:absolute;
+      left:-5%;
+      right:-5%;
+      top:-45px;
+      height:100px;
+      border-top:3px solid rgba(214,175,69,0.85);
+      border-radius:50%;
+      opacity:0.95;
+    }
+
+    .services{
+      position:relative;
+      padding:42px 0 36px;
+      background:
+        radial-gradient(circle at center, rgba(214,175,69,0.08), transparent 32%),
+        linear-gradient(180deg, #0a2b16 0%, #0b3119 50%, #0a2b16 100%);
+    }
+
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      color:var(--gold);
+      font-family:"Cinzel", serif;
+      font-size:1.2rem;
+      font-weight:800;
+      letter-spacing:0.08em;
+      margin-bottom:10px;
+      text-transform:uppercase;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after{
+      content:"";
+      width:110px;
+      height:2px;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .section-title{
+      text-align:center;
+      font-family:"Cinzel", serif;
+      font-size:4rem;
+      line-height:1.08;
+      font-weight:800;
+      color:#fff;
+      text-shadow:0 3px 6px rgba(0,0,0,0.45);
+    }
+
+    .section-subtitle{
+      text-align:center;
+      font-size:1.55rem;
+      font-weight:600;
+      color:#f0f0f0;
+      margin-top:10px;
+      text-shadow:0 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .cards{
+      margin-top:34px;
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(6,23,12,0.96), rgba(7,25,13,0.98));
+      border:2px solid rgba(214,175,69,0.9);
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .card-image{
+      height:200px;
+      background-size:cover;
+      background-position:center;
+      border-bottom:2px solid rgba(214,175,69,0.7);
+    }
+
+    .card-body{
+      padding:18px 18px 20px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-height:140px;
+      justify-content:center;
+    }
+
+    .card-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-family:"Cinzel", serif;
+      color:#fff;
+      font-size:1.15rem;
+      font-weight:800;
+      letter-spacing:0.01em;
+      line-height:1.2;
+      text-transform:uppercase;
+    }
+
+    .card-icon{
+      color:var(--gold-light);
+      font-size:1.7rem;
+      flex-shrink:0;
+    }
+
+    .card-desc{
+      color:#f0f0f0;
+      font-size:1.05rem;
+      font-weight:600;
+      line-height:1.45;
+      padding-left:38px;
+    }
+
+    .bottom-cta{
+      padding:34px 0 34px;
+      text-align:center;
+      background:
+        linear-gradient(180deg, rgba(8,28,14,0.2), rgba(8,28,14,0.05)),
+        radial-gradient(circle at center, rgba(214,175,69,0.12), transparent 38%);
+    }
+
+    .bottom-cta .small{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:16px;
+      font-family:"Cinzel", serif;
+      color:var(--gold);
+      font-size:1.1rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      margin-bottom:12px;
+    }
+
+    .bottom-cta .small::before,
+    .bottom-cta .small::after{
+      content:"";
+      width:120px;
+      height:2px;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .bottom-phone{
+      font-family:"Cinzel", serif;
+      font-size:5rem;
+      line-height:1;
+      color:#fff;
+      font-weight:800;
+      text-shadow:0 3px 6px rgba(0,0,0,0.35);
+    }
+
+    .trust-row{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:28px;
+      color:#fff7df;
+      font-size:1.18rem;
+      font-weight:700;
+    }
+
+    .trust-row span{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .trust-row .check{
+      color:var(--gold-light);
+      font-size:1.15rem;
+    }
+
+    footer{
+      border-top:1px solid rgba(214,175,69,0.65);
+      padding:22px 0 30px;
+      background:linear-gradient(180deg, rgba(5,18,9,0.15), rgba(5,18,9,0.35));
+    }
+
+    .footer-row{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:26px;
+      flex-wrap:wrap;
+      text-align:center;
+      color:#f0efe9;
+      font-size:1.05rem;
+      font-weight:500;
+    }
+
+    .footer-icons{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      font-size:1.4rem;
+      color:var(--gold-light);
+    }
+
+    @media (max-width: 1200px){
+      .menu{
+        gap:24px;
+      }
+
+      .service-list li{
+        font-size:1.7rem;
+      }
+
+      .section-title{
+        font-size:3.2rem;
+      }
+
+      .bottom-phone{
+        font-size:4.2rem;
+      }
+    }
+
+    @media (max-width: 992px){
+      .nav{
+        flex-wrap:wrap;
+        justify-content:center;
+        padding:18px 0;
+      }
+
+      .brand{
+        justify-content:center;
+      }
+
+      .hero-grid{
+        grid-template-columns:1fr;
+        min-height:auto;
+        gap:24px;
+        text-align:center;
+      }
+
+      .hero-left,
+      .hero-right{
+        align-items:center;
+        padding:10px 0;
+      }
+
+      .service-list li{
+        justify-content:flex-start;
+        font-size:1.55rem;
+      }
+
+      .cards{
+        grid-template-columns:repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px){
+      .menu{
+        flex-wrap:wrap;
+        justify-content:center;
+        font-size:0.92rem;
+        gap:16px;
+      }
+
+      .nav-cta{
+        padding:14px 18px;
+        font-size:0.92rem;
+      }
+
+      .brand-text .top{
+        font-size:1.6rem;
+      }
+
+      .brand-text .bottom{
+        font-size:0.95rem;
+      }
+
+      .service-list li{
+        font-size:1.2rem;
+        gap:10px;
+      }
+
+      .check-box{
+        width:38px;
+        height:38px;
+        font-size:1.4rem;
+        border-width:3px;
+      }
+
+      .hero-cta{
+        font-size:1rem;
+        padding:14px 20px;
+      }
+
+      .section-title{
+        font-size:2.4rem;
+      }
+
+      .section-subtitle{
+        font-size:1.1rem;
+      }
+
+      .cards{
+        grid-template-columns:1fr;
+      }
+
+      .card-image{
+        height:210px;
+      }
+
+      .bottom-phone{
+        font-size:2.7rem;
+      }
+
+      .trust-row{
+        font-size:1rem;
+        gap:14px;
+      }
+
+      .footer-row{
+        font-size:0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-bg">
+
+    <header>
+      <div class="container nav">
+        <a href="#home" class="brand">
+          <img src="logo.png" alt="Eden Lawn Care Logo">
+          <div class="brand-text">
+            <div class="top">EDEN</div>
+            <span class="bottom">LAWN CARE</span>
+          </div>
+        </a>
+
+        <ul class="menu">
+          <li><a href="#home">HOME</a></li>
+          <li><a href="#services">SERVICES</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+
+        <a class="nav-cta" href="tel:19038052338">FREE ESTIMATE</a>
+      </div>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <img src="logo.png" alt="Eden Lawn Care Logo" class="hero-logo">
+        </div>
+
+        <div class="hero-right">
+          <ul class="service-list">
+            <li><span class="check-box">✓</span> <span>MOWING</span></li>
+            <li><span class="check-box">✓</span> <span>LANDSCAPING</span></li>
+            <li><span class="check-box">✓</span> <span>MULCHING</span></li>
+            <li><span class="check-box">✓</span> <span>LEAF REMOVAL</span></li>
+            <li><span class="check-box">✓</span> <span>PROPERTY SALE PREPARATION</span></li>
+          </ul>
+
+          <div class="hero-cta-wrap">
+            <a class="hero-cta" href="tel:19038052338">
+              <span class="icon">📞</span>
+              <span>CALL FOR A FREE ESTIMATE</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="eyebrow">OUR SERVICES</div>
+        <h2 class="section-title">Expert Lawn Care You Can Trust</h2>
+        <p class="section-subtitle">Keeping your property healthy, clean &amp; beautiful all year round</p>
+
+        <div class="cards">
+          <div class="card">
+            <div class="card-image" style="background-image:url('mowing.jpg');"></div>
+            <div class="card-body">
+              <div class="card-title"><span class="card-icon">🚜</span> <span>LAWN MOWING</span></div>
+              <div class="card-desc">Precision cutting &amp; edging</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-image" style="background-image:url('landscaping.jpg');"></div>
+            <div class="card-body">
+              <div class="card-title"><span class="card-icon">🌿</span> <span>LANDSCAPING</span></div>
+              <div class="card-desc">Design &amp; installation</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-image" style="background-image:url('mulching.jpg');"></div>
+            <div class="card-body">
+              <div class="card-title"><span class="card-icon">🌼</span> <span>MULCHING</span></div>
+              <div class="card-desc">Premium mulch installation</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-image" style="background-image:url('leaf-removal.jpg');"></div>
+            <div class="card-body">
+              <div class="card-title"><span class="card-icon">🍃</span> <span>LEAF REMOVAL</span></div>
+              <div class="card-desc">Fast &amp; seasonal cleanup</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-image" style="background-image:url('land-clearing.jpg');"></div>
+            <div class="card-body">
+              <div class="card-title"><span class="card-icon">🚧</span> <span>LAND CLEARING</span></div>
+              <div class="card-desc">Brush &amp; debris removal</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-image" style="background-image:url('sale-prep.jpg');"></div>
+            <div class="card-body">
+              <div class="card-title"><span class="card-icon">🏠</span> <span>SALE PREPARATION</span></div>
+              <div class="card-desc">Boost property value</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom-cta" id="contact">
+      <div class="container">
+        <div class="small">FREE ESTIMATES AVAILABLE</div>
+        <div class="bottom-phone">903-805-2338</div>
+
+        <div class="trust-row">
+          <span><span class="check">✔</span> Reliable Service</span>
+          <span><span class="check">✔</span> 100% Satisfaction</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-row">
+        <div>© 2026 Eden Lawn Care</div>
+        <div>|</div>
+        <div>Genesis 2:15</div>
+        <div>|</div>
+        <div>Serving East Texas</div>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
